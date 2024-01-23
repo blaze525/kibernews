@@ -6,59 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="/fa/css/fontawesome.css" rel="stylesheet">
-    <link href="/fa/css/brands.css" rel="stylesheet">
-    <link href="/fa/css/solid.css" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-            container:{center:true},
-            screens: {
-            'sm': '576px',
-        
-            'md': '960px',
-        
-            'lg': '1440px',
-        },
-        extend: {
-            colors: {
-                clifford: '#da373d',
-            }
-        }
-        }
-      }
-      </script>
-      <style type="text/tailwindcss">
-          @layer utilities {
-            h2{
-              font-size:24px ;
-              font-weight: bold   ;
-            }
-            *{
-              padding: 0px;
-              margin: 0px;
-              font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
-  
-            .cardTitle{
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                line-height: 1.2; 
-            }
-          }
-        </style>
-    <title>News</title>
     <link rel="stylesheet" href="{% static 'src/styles.css' %}">
+    <title>News</title>
 </head>
 <body class="bg-gray-200">
-    <div class="sticky top-0 z-50">
-        <header class="text-white text-lg w-full relative bg-black backdrop-filter backdrop-blur-sm bg-opacity-70">
-            <div class="px-5 container flex justify-between items-center h-[70px] md:h-[100px]">
-                Salam
-            </div>
-        </header>
-    </div>
+
+    {% include 'header.html' %}
+    {% block content %}
+      
+    {% endblock content %}
+    
 </body>
 </html>
