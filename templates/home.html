@@ -2,26 +2,158 @@
 {% load static %}
 
 {% block content %}
-    <div class="container py-10 mx-auto ">
-        <div class="w-full">
+    <div class="container mx-auto">
+        <div class="w-full pt-10">
             <a href="#" class="">
-                <img src="{% static 'img/reklama.gif' %}" alt="reklama2" class="w-full h-[150px] object-cover">
+                <img src="{% static 'img/reklama.gif' %}" alt="reklama2" class="w-full h-[150px] object-cover rounded">
             </a>
         </div>
-        <div class="flex space-x-4 py-4">
-            <div class="w-1/4">
-                <div>Category</div>
-                <div>Category</div>
-                <div>Category</div>
-                <div>Category</div>
-                <div>Category</div>
-                <div>Category</div>
-                <div>Category</div>
-                <div>Category</div>
+        
+        <div class="flex justify-center items-center my-5">
+            <button id="scrollLeft" class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none">
+                <!-- Left Arrow Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <div id="chipContainer" class="flex overflow-x-auto space-x-2 p-2">
+                {% for category in categories %}
+                    <div class="bg-red-400">{{ category.name }}</div>
+                {% endfor %}                
             </div>
-            <div class="w-3/4">
+            <button id="scrollRight" class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none">
+                <!-- Right Arrow Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
 
+
+        <div class="flex space-x-4">
+              
+            <div class="w-full">
+          
+                    <div class="group col-span-12 md:col-span-8 lg:col-span-6 relative h-[300px] sm:h-[400px] md:h-[600px]  overflow-hidden hover:shadow-black shadow-2xl transition-all duration-500">
+                      
+                      <a href="#" target="_blank" >
+                          <div class="group-hover:scale-105 for-my-special-banner absolute top-0 left-0 w-full h-full bg-cover transition-all duration-500 " style="background-image: url('../static/img/img1.jpg')" alt="Resim 1"><div class=" flex h-full w-full bg-black bg-opacity-30 justify-center items-center px-10 flex-col">
+                              <p class="text-white text-2xl underline">12.12.2024</p>
+                              <h2 class="text-white text-center text-lg md:text-2xl ">Hello World</h2>
+                          </div></div>
+                       </a>  
+                       <a href="#" target="_blank" >
+                          <div class="group-hover:scale-105 for-my-special-banner absolute top-0 left-0 w-full h-full bg-cover transition-all duration-500 " style="background-image: url('../static/img/img2.jpg')" alt="Resim 1"><div class=" flex h-full w-full bg-black bg-opacity-30 justify-center items-center px-10 flex-col">
+                              <p class="text-white text-2xl underline">12.12.2024</p>
+                              <h2 class="text-white text-center text-lg md:text-2xl ">Hello World</h2>
+                          </div></div>
+                       </a>  
+                       <a href="#" target="_blank" >
+                          <div class="group-hover:scale-105 for-my-special-banner absolute top-0 left-0 w-full h-full bg-cover transition-all duration-500 " style="background-image: url('../static/img/img3.jpg')" alt="Resim 1"><div class=" flex h-full w-full bg-black bg-opacity-30 justify-center items-center px-10 flex-col">
+                              <p class="text-white text-2xl underline">12.12.2024</p>
+                              <h2 class="text-white text-center text-lg md:text-2xl ">Hello World</h2>
+                          </div></div>
+                       </a>
+              
+                        <div class="next-button right-0  absolute top-1/2 -translate-y-[50%] w-[50px] h-[50px] bg-white bg-opacity-50 text-white text-2xl text-center leading-[48px] cursor-pointer">&#8250;</div>
+                        <div class="prev-button left-0  absolute top-1/2 -translate-y-[50%] w-[50px] h-[50px] bg-white bg-opacity-50 text-white text-2xl text-center leading-[48px] cursor-pointer">&#8249;</div>        
+                  </div>
             </div>
         </div>
+
+        
+        <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 py-10">
+
+                <div class="shadow-xl cursor-pointer transition-all duration-300">
+                    <div class="cursor-pointer rounded-t relative overflow-hidden w-full h-[250px]">
+                        <img src="{% static 'img/img1.jpg' %}" alt="" class="object-cover  w-full h-full rounded-t transition-transform transform hover:scale-110 duration-500">
+                    </div> 
+                    <div class="py-2 px-3">
+                        <div class=" w-full overflow-hidden">
+                    
+                            <p class="font-thin text-[14px] text-blue-400">12.12.2021</p>
+                            <h1 class="overflow-hidden text-ellipsis text-lg sm:text-[22px] whitespace-normal font-bold line-clamp-2 leading-none h-[47px] mt-1">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, dignissimos.Lorem
+                                 ipsum dolor sit amet, consectetur adipisicing elit. Earum, dignissimos.
+                            </h1>
+                        
+                        </div>
+                        <h1 class="overflow-hidden text-ellipsis text-[14px] whitespace-normal line-clamp-3 mt-1 h-[60 px] leading-tight font-thin">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                            Earum, dignissimos.Lorem ipsum dolor sit amet, 
+                            consectetur adipisicing elit. Earum, dignissimos.
+                        </h1>
+                    </div>
+                </div>
+                
+                
+            
+        
+        </div>
+
+        
     </div>
+    <script>
+        var images = document.querySelectorAll('.for-my-special-banner');
+        var nextButton = document.querySelector('.next-button');
+        var prevButton = document.querySelector('.prev-button');
+        var currentIndex = 0;
+    
+        function showImage(index) {
+          images.forEach(function(image) {
+            image.style.opacity = 0;
+          });
+    
+          images[index].style.opacity = 1;
+        }
+    
+        function showNextImage() {
+          currentIndex = (currentIndex + 1) % images.length;
+          showImage(currentIndex);
+        }
+    
+        function showPrevImage() {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          showImage(currentIndex);
+        }
+    
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.addEventListener('click', showPrevImage);
+    
+        showImage(currentIndex);
+        setInterval(showNextImage, 2000);
+
+
+        const scrollLeftButton = document.getElementById('scrollLeft');
+        const scrollRightButton = document.getElementById('scrollRight');
+        const chipContainer = document.getElementById('chipContainer');
+
+        scrollLeftButton.addEventListener('click', () => {
+            chipContainer.scrollBy({
+                left: -100, // Adjust the scroll amount as needed
+                behavior: 'smooth'
+            });
+        });
+
+        scrollRightButton.addEventListener('click', () => {
+            chipContainer.scrollBy({
+                left: 100, // Adjust the scroll amount as needed
+                behavior: 'smooth'
+            });
+        });
+
+</script>
+
+
+<style>
+    /* Hide the scrollbar */
+    #chipContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for Firefox */
+    #chipContainer {
+        scrollbar-width: none;
+    }
+</style>
 {% endblock content %}

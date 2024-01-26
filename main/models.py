@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(verbose_name='name', max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -16,8 +17,8 @@ class Category(models.Model):
     
     
 class News(models.Model):
-    title = models.TextField()
-    description = models.TextField()
+    title = models.TextField(verbose_name='title')
+    description = models.TextField(verbose_name='description')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     img = models.ImageField(null=False, blank=True, upload_to='news/')
     created_at = models.DateTimeField(auto_now_add=True)

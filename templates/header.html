@@ -1,3 +1,5 @@
+{% load static %}
+
 <script src="https://cdn.tailwindcss.com"></script>
     <link href="/fa/css/fontawesome.css" rel="stylesheet">
     <link href="/fa/css/brands.css" rel="stylesheet">
@@ -42,35 +44,25 @@
     }
 </style>
 
-<div class="sticky top-0 z-50">
-    <header class="text-white text-lg w-full relative bg-black backdrop-filter backdrop-blur-sm bg-opacity-70">
-        <div class="px-5 container flex justify-between items-center h-[70px] md:h-[100px]">
+    <header class="text-lg w-full h-[50px] backdrop-blur-xl bg-[#1D1D1D]/30 sticky top-0 z-50 flex items-center">
+        <div class="container flex justify-between items-center h-[70px] md:h-[100px]">
             <div class="flex space-x-3 text-lg items-center cursor-pointer">
-                <a href=""><div class="ml-3 text-lg md:text-2xl font-bold flex justify-start">Habarportal</div></a>
+                <a href=""><div class="ml-3 text-lg md:text-2xl font-bold flex justify-start text-[#E9F1FA]">Habarportal</div></a>
             </div>
 
-            <div class="flex ">
-
-                <button id="searchBut" onclick="hideElement('moreHeader')" class="inline-flex items-center0 border-0 p-3 focus:outline-none text-gray-300 hover:text-white rounded md:hidden xl:hidde">ellipsis</button>
-      
-                <button id="searchBut" onclick="hideElement('search_field')" class="inline-flex items-center0 border-0 p-3 focus:outline-nonetext-gray-300 hover:text-white rounded ">Search</button>
+            <div class="flex items-center space-x-6 text-black font-medium">
+              <button id="searchBut" onclick="hideElement('search_field')" class="w-[25px] h-[25px]">
+                <img src="{% static 'logo/search.png' %}" alt="">
+              </button>
+              <div class="flex items-center justify-between space-x-2">
+                <a href="{% url 'set-language' 'tk' %}"><img src="{% static 'logo/tk.svg' %}" alt="" class="w-[25px] h-[25px]"></a>
+                <a href="{% url 'set-language' 'ru' %}"><img src="{% static 'logo/ru.svg' %}" alt="" class="w-[25px] h-[25px]"></a>
+              </div>
             </div>
         </div>
-        <div id="moreHeader" style="display: none;" >
-            <div class="container flex justify-between items-center h-full pb-1 border-t-2">
-              <div class="flex w-14/15 flex-wrap ">
-                <a href=""><div class="text-[12px] md:text-lg px-3 py-1 cursor-pointer border-b-2 border-[rgba(0,0,0,0)]  hover:border-gray-200 text-gray-300 hover:text-white  font-semibold  transition-all duration-500">catagories</div></a>
-                <a href=""><div class="text-[12px] md:text-lg px-3 py-1 cursor-pointer border-b-2 border-[rgba(0,0,0,0)]  hover:border-gray-200 text-gray-300 hover:text-white  font-semibold  transition-all duration-500">catagories</div></a>
-                <a href=""><div class="text-[12px] md:text-lg px-3 py-1 cursor-pointer border-b-2 border-[rgba(0,0,0,0)]  hover:border-gray-200 text-gray-300 hover:text-white  font-semibold  transition-all duration-500">catagories</div></a>
-              </div>
-      
-              <button id="searchBut" onclick="hideElement('moreHeader')" class="inline-flex items-center0 border-0 p-3 focus:outline-nonetext-gray-300  hover:text-white rounded "><i class="fas fas fa-times border-b-2 border-[rgba(0,0,0,0)]  hover:border-gray-200 px-2 transition-all duration-200"></i></button>
-            </div>
-          </div>
     </header>
 
-    </div>
-
+    
       <!-- field for search  -->
     <div id="search_field" onclick="hideElement('search_field')" class="fixed top-0 left-0 h-screen w-full backdrop-blur-sm bg-black bg-opacity-70 items-start  justify-center z-50" style="display: none;">
       

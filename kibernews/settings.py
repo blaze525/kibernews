@@ -12,18 +12,22 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    
+    'modeltranslation',
+    'jazzmin',
+    'django.contrib.admin',
+    'main',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,11 +84,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'tk'
 
 TIME_ZONE = 'Asia/Ashgabat'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -103,3 +109,19 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LANGUAGES = (
+    ('tk', 'Turkmen'),
+    ('ru', 'Russian')
+)
+
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/'
+]
+
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'tk'
+
+MODELTRANSLATION_LANGUAGES = ('tk', 'ru')
