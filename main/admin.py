@@ -13,7 +13,7 @@ class CategoryAdmin(TranslationAdmin):
     class Media:
         js = (
             'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
-        'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
+            'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         
