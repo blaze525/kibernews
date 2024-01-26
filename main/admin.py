@@ -9,6 +9,7 @@ class CategoryAdmin(TranslationAdmin):
     
     group_fieldsets = True
     
+    
     class Media:
         js = (
             'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
