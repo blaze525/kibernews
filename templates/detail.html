@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'header.html' %}
+    <div class="md:container shadow-xl md:flex border border-black rounded mb-5 sm:pb-10 md:pb-0">
+        <div class="md:w-3/4 md:px-20 md:py-10 p-10">
+            <h2 class="leading-none">{{ detail.title }}</h2>
+            <img src="{{ detail.img.url }}" alt="habar" class="w-full h-[500px] object-cover my-5">
+            
+            <div class="flex justify-between items-center">
+                <p class="font-bold">{{ detail.created_at|date:"d.m.Y H:i" }}</p>
+                <div class="text-[13px] px-2 bg-blue-400 text-white font-thin">{{ detail.category.name }}</div>
+            </div>
+            <p class="mt-5">{{ detail.description }}</p>
+        </div>
+
+        <div class="md:w-1/4 md:border-l md:border-black md:px-5 md:py-10 sm:flex sm:overflow-auto sm:w-full sm:space-x-4 sm:px-10 md:block">
+            {% for item in similar_news %}
+            <a href="{% url 'news-detail' id=item.id %}">
+                <div class="md:flex md:h-[100px] md:w-full sm:w-[150px] border border-black cursor-pointer sm:p-2 md:p-0 ">
+                    <div class="md:p-2 md:w-2/5">
+                        <img src="{{ item.img.url }}" alt="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:py-2 md:pr-2 text-[12px] md:w-3/5 leading-none pt-2">
+                        <p class="font-bold">{{ item.created_at|date:"d.m.Y H:i" }}</p>
+                        <p class="mt-[5px] h-[61px] line-clamp-3 overflow-hidden">{{ item.title }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            
+        </div>
+    </div>
+{% endblock content %}

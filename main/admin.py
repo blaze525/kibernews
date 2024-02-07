@@ -22,5 +22,21 @@ class CategoryAdmin(TranslationAdmin):
         }
     
     
-admin.site.register(models.News)
+@admin.register(models.News)
+class NewsAdmin(TranslationAdmin):
+    list_display = ('title', 'description')
+    
+    group_fieldsets = True
+    
+    class Media:
+        js = (
+            'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+            'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
 admin.site.register(models.Banner)

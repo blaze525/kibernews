@@ -1,0 +1,57 @@
+<div id="search_field" onclick="hideElement('search_field')" class="fixed top-0 left-0 h-screen w-full backdrop-blur-sm bg-black bg-opacity-70 items-start  justify-center z-50" style="display: none;">
+      
+
+    <div onclick="event.stopPropagation()" class="border-red-500 p-10 bg-gray-100  mt-24 mx-3 w-full sm:w-2/3 md:w-1/2 lg:w-2/5 space-y-2 rounded-sm relative">
+
+      <button id="esc_search" onclick="hideElement('search_field')" class=" w-10 py-1 absolute top-0 right-0 text-sm sm:text-lg hover:text-red-400 text-gray-300"><i class="far fa-window-close"></i></button>
+
+      <div class="flex ">
+      <input type="text" id="" name="" class="shadow-lg w-full bg-white  rounded-bl-md rounded-tl-md text-sm sm:text-lg outline-none text-gray-700 sm:py-2 px-3 leading-10 transition-colors duration-200 ease-in-out ">
+      <button class="font-bold text-sm sm:text-lg hover:bg-gray-400 bg-gray-200 w-12 rounded-br-sm rounded-tr-sm"><i class="fas fas fas fa-search"></i></button>
+    </div>
+    
+    <a href="" class="">
+      <h2 class="shadow-sm mt-2 hover:bg-gray-500 text-sm sm:text-lg hover:bg-opacity-25 duration-300 transition-all p-3 rounded-sm">Reponsive Lorem ipsum dolor sit amet.</h2>
+    </a>
+    <a href="" class="">
+      <h2 class="shadow-sm mt-2 hover:bg-gray-500 text-sm sm:text-lg hover:bg-opacity-25 duration-300 transition-all p-3 rounded-sm">Reponsive Lorem ipsum dolor sit amet.</h2>
+    </a>
+    <a href="" class="">
+      <h2 class="shadow-sm mt-2 hover:bg-gray-500 text-sm sm:text-lg hover:bg-opacity-25 duration-300 transition-all p-3 rounded-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae labore reiciendis harum quam doloremque sit error velit at corrupti eos, accusantium cupiditate fuga dicta corporis veniam id dignissimos modi enim?Reponsive Lorem ipsum dolor sit amet.</h2>
+    </a>
+  </div>
+</div>
+
+<script>
+    function hideElement(elementId) {
+      var element = document.getElementById(elementId);
+      if (element.style.display === 'none') {
+        element.style.display = 'flex';
+      } else {
+        element.style.display = 'none';
+      }
+    }
+  // ekranda headerin elemntlerin hide/vis edyan kod 
+    document.addEventListener('DOMContentLoaded', function() {
+      var myDiv = document.getElementById('headerItems');
+      var toggleButton = document.getElementById('controlHeaderItems');
+  
+      if (myDiv && toggleButton) {
+          toggleButton.addEventListener('click', function() {
+              myDiv.classList.toggle('hidden');
+          });
+  
+          window.addEventListener('resize', function() {
+              if (window.innerWidth >= 960) { // 640 piksel veya daha genişse
+                  myDiv.classList.remove('hidden');
+                  toggleButton.classList.add('hidden');
+              } else {
+                  myDiv.classList.add('hidden');
+                  toggleButton.classList.remove('hidden');
+              }
+          });
+      } else {
+          console.error('Elementler bulunamadı');
+      }
+  });
+  </script>

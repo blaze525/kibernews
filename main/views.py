@@ -1,36 +1,48 @@
 from django.shortcuts import render
-from urllib.parse import urlparse
-from django.conf import settings
-from django.http import HttpResponseRedirect
-from django.urls.base import resolve, reverse
-from django.urls.exceptions import Resolver404
-from django.utils import translation
 from . import models
 
 
 def home(request):
+    categories = []
     category = models.Category.objects.all()
+    for i in range(100):
+        categories += category
+    news = models.News.objects.all()
+    banners = models.Banner.objects.all()
     context = {
-        'categories': category
+        'categories': categories,
+        'news': news,
+        'banners': banners,
+        'range_100': range(101)
     }
     return render(request, 'home.html', context)
 
 
+def news_detail(request, id):
+    detail = models.News.objects.get(id=id)
+    similar_news = models.News.objects.filter(category_id=detail.category.id)[:10]
+    context = {
+        'detail': detail,
+        'similar_news': similar_news
+    }
+    return render(request, 'detail.html', context)
 
-def set_language(request, language):
-    for lang, _ in settings.LANGUAGES:
-        translation.activate(lang)
+
+def news(request):
+    category_id = request.GET.get('category_id')
+    news = models.News.objects.all()
+    category = None
+    
+    if category_id:
         try:
-            view = resolve(urlparse(request.META.get("HTTP_REFERER")).path)
-        except Resolver404:
-            view = None
-        if view:
-            break
-    if view:
-        translation.activate(language)
-        next_url = reverse(view.url_name, args=view.args, kwargs=view.kwargs)
-        response = HttpResponseRedirect(next_url)
-        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
-    else:
-        response = HttpResponseRedirect("/")
-    return response
+            category = models.Category.objects.get(id=int(category_id))
+            news = news.filter(category_id=category_id)
+        except models.Category.DoesNotExist:
+            pass
+    
+    context = {
+        'news': news,
+        'category': category
+    }
+    
+    return render(request, 'news.html', context)

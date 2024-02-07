@@ -10,133 +10,47 @@
             </a>
         </div>
         
-        <div class="flex justify-center items-center my-5">
-            <button id="scrollLeft" class="p-2  bg-gray-200 hover:bg-gray-300 focus:outline-none">
-                <!-- Left Arrow Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[14px] w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-            <div id="chipContainer" class="flex overflow-x-auto space-x-2 p-2">
-                {% for category in categories %}
-                    <div class="text-[12px] cursor-pointer hover:text-blue-400 uppercase">{{ category.name }}</div>
-                {% endfor %}                
+        <div class="slider-container bg-gray-200 p-2 overflow-hidden">
+            <div class="slider-content flex space-x-10">
+            {% for category in categories %}
+                <a href="{% url 'news' %}?category_id={{ category.id }}">
+                    <div class="slider-item cursor-pointer hover:text-blue-400">{{ category.name }}</div>
+                </a>
+            {% endfor %}
             </div>
-            <button id="scrollRight" class="p-2  bg-gray-200 hover:bg-gray-300 focus:outline-none">
-                <!-- Right Arrow Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[14px] w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
+          </div>
 
-
-        <div class="flex space-x-4">
-              
-            <div class="w-full">
           
-                    <div class="group col-span-12 md:col-span-8 lg:col-span-6 relative h-[300px] sm:h-[400px] md:h-[600px]  overflow-hidden hover:shadow-black shadow-2xl transition-all duration-500">
-                      
-                        {% for banner in banners %}
-                            <a href="#" target="_blank" >
-                                <div class="group-hover:scale-105 for-my-special-banner absolute top-0 left-0 w-full h-full bg-cover transition-all duration-500 " style="background-image: url('{{ banner.img.url }}')" alt="Resim 1">
-                                    
-                                </div>
-                            </a>  
-                        {% endfor %}
-              
-                        <div class="next-button right-0  absolute top-1/2 -translate-y-[50%] w-[50px] h-[50px] bg-white bg-opacity-50 text-white text-2xl text-center leading-[48px] cursor-pointer">&#8250;</div>
-                        <div class="prev-button left-0  absolute top-1/2 -translate-y-[50%] w-[50px] h-[50px] bg-white bg-opacity-50 text-white text-2xl text-center leading-[48px] cursor-pointer">&#8249;</div>        
-                  </div>
-            </div>
-        </div>
+
+        {% include 'components/banner.html' %}
 
         
         <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 py-10">
 
             {% for new in news %}
-                <div class="shadow-xl cursor-pointer transition-all duration-300">
-                    <div class="cursor-pointer rounded-t relative overflow-hidden w-full h-[200px]">
-                        <img src="{{ new.img.url }}" alt="" class="object-cover  w-full h-full rounded-t transition-transform transform hover:scale-110 duration-500">
-                    </div> 
-                    <div class="py-2 px-3">
-                        <div class=" w-full overflow-hidden">
-                            <div class="flex justify-between">
-                                <p class="font-thin text-[14px] text-blue-400">{{ new.created_at|date:"d.m.Y" }}</p>
-                                <div class="text-[13px] px-2 bg-blue-400 text-white font-thin">{{ new.category.name }}</div>
-                            </div>
-                            <h1 class="overflow-hidden text-ellipsis text-lg sm:text-[22px] whitespace-normal font-bold line-clamp-2 leading-none h-[47px] mt-1">{{ new.title }}</h1>
-                        
-                        </div>
-                        <h1 class="overflow-hidden text-ellipsis text-[14px] whitespace-normal line-clamp-3 mt-1 h-[60 px] leading-tight font-thin">{{ new.description }}</h1>
-                    </div>
-                </div>
+                {% include 'components/card.html' %}
             {% endfor %}
         </div>
 
         
     </div>
-    <script>
-        var images = document.querySelectorAll('.for-my-special-banner');
-        var nextButton = document.querySelector('.next-button');
-        var prevButton = document.querySelector('.prev-button');
-        var currentIndex = 0;
-    
-        function showImage(index) {
-          images.forEach(function(image) {
-            image.style.opacity = 0;
-          });
-    
-          images[index].style.opacity = 1;
-        }
-    
-        function showNextImage() {
-          currentIndex = (currentIndex + 1) % images.length;
-          showImage(currentIndex);
-        }
-    
-        function showPrevImage() {
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          showImage(currentIndex);
-        }
-    
-        nextButton.addEventListener('click', showNextImage);
-        prevButton.addEventListener('click', showPrevImage);
-    
-        showImage(currentIndex);
-        setInterval(showNextImage, 2000);
-
-
-        const scrollLeftButton = document.getElementById('scrollLeft');
-        const scrollRightButton = document.getElementById('scrollRight');
-        const chipContainer = document.getElementById('chipContainer');
-
-        scrollLeftButton.addEventListener('click', () => {
-            chipContainer.scrollBy({
-                left: -100, // Adjust the scroll amount as needed
-                behavior: 'smooth'
-            });
-        });
-
-        scrollRightButton.addEventListener('click', () => {
-            chipContainer.scrollBy({
-                left: 100, // Adjust the scroll amount as needed
-                behavior: 'smooth'
-            });
-        });
-
-</script>
 
 
 <style>
-    /* Hide the scrollbar */
-    #chipContainer::-webkit-scrollbar {
-        display: none;
+    .slider-content {
+        display: flex;
+        animation: scroll 200s linear infinite;
+    }
+        
+    .slider-content:hover {
+        animation-play-state: paused;
     }
 
-    /* Hide scrollbar for Firefox */
-    #chipContainer {
-        scrollbar-width: none;
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-100% * 6)); }
     }
+    
+    
 </style>
 {% endblock content %}

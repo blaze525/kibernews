@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'header.html' %}
+    <div class="container mx-auto">
+        <div class="text-[25px] font-bold">
+            {{ category.name }}
+        </div>
+        <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 py-5">
+
+            {% for new in news %}
+                {% include 'components/card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

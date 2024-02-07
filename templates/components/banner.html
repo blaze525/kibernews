@@ -1,0 +1,49 @@
+<div class="flex space-x-4">
+              
+    <div class="w-full">
+  
+            <div class="group col-span-12 md:col-span-8 lg:col-span-6 relative h-[300px] sm:h-[400px] md:h-[600px] rounded overflow-hidden hover:shadow-black shadow-2xl transition-all duration-500">
+              
+                {% for banner in banners %}
+                    <a href="{% url 'news-detail' id=banner.news.id %}" target="_blank" >
+                        <div class="group-hover:scale-105 for-my-special-banner absolute rounded top-0 left-0 w-full h-full bg-cover transition-all duration-500 " style="background-image: url('{{ banner.img.url }}')" alt="Resim 1">
+                        </div>
+                    </a>  
+                {% endfor %}
+      
+                <div class="next-button right-0  absolute top-1/2 -translate-y-[50%] w-[50px] h-[50px] bg-black bg-opacity-50 text-white text-2xl text-center leading-[48px] cursor-pointer">&#8250;</div>
+                <div class="prev-button left-0  absolute top-1/2 -translate-y-[50%] w-[50px] h-[50px] bg-black bg-opacity-50 text-white text-2xl text-center leading-[48px] cursor-pointer">&#8249;</div>        
+          </div>
+    </div>
+</div>
+
+<script>
+    var images = document.querySelectorAll('.for-my-special-banner');
+        var nextButton = document.querySelector('.next-button');
+        var prevButton = document.querySelector('.prev-button');
+        var currentIndex = 0;
+    
+        function showImage(index) {
+          images.forEach(function(image) {
+            image.style.opacity = 0;
+          });
+    
+          images[index].style.opacity = 1;
+        }
+    
+        function showNextImage() {
+          currentIndex = (currentIndex + 1) % images.length;
+          showImage(currentIndex);
+        }
+    
+        function showPrevImage() {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          showImage(currentIndex);
+        }
+    
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.addEventListener('click', showPrevImage);
+    
+        showImage(currentIndex);
+        setInterval(showNextImage, 2000);
+</script>
